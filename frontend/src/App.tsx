@@ -1,4 +1,6 @@
 import './App.css'
+import ApplicationCard from './components/ApplicationCard'
+import { sampleApplications } from './data/sampleApplications'
 
 function App() {
   return (
@@ -44,6 +46,24 @@ function App() {
             <span>Offers</span>
             <strong>0</strong>
           </article>
+        </section>
+
+        <section className="applications-section">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">Recent applications</p>
+              <h2>Application tracker</h2>
+            </div>
+          </div>
+
+          <div className="applications-list">
+            {sampleApplications.map((application) => (
+              <ApplicationCard
+                key={application.id}
+                application={application}
+              />
+            ))}
+          </div>
         </section>
       </main>
     </div>

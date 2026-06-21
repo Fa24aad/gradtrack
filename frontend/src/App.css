@@ -1,118 +1,77 @@
-.app {
-  min-height: 100vh;
-  background: #f8fafc;
-  color: #1e293b;
+.applications-section {
+  margin-top: 2rem;
 }
 
-.app-header {
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.applications-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.application-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: 1.5rem 5%;
-  background: #ffffff;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.app-header h1 {
-  margin: 0;
-  font-size: 1.8rem;
-  color: #0f172a;
-}
-
-.app-header p {
-  margin: 0.25rem 0 0;
-  color: #64748b;
-}
-
-.primary-button {
-  border: none;
-  border-radius: 0.75rem;
-  padding: 0.8rem 1.1rem;
-  background: #2563eb;
-  color: #ffffff;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.dashboard {
-  width: min(1100px, 90%);
-  margin: 2rem auto;
-}
-
-.hero-card {
-  padding: 2rem;
-  border-radius: 1.25rem;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-}
-
-.eyebrow {
-  margin: 0 0 0.75rem;
-  color: #2563eb;
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.hero-card h2 {
-  max-width: 700px;
-  margin: 0;
-  font-size: clamp(2rem, 5vw, 3.25rem);
-  line-height: 1.05;
-  color: #0f172a;
-}
-
-.hero-card p {
-  max-width: 700px;
-  margin: 1rem 0 0;
-  color: #475569;
-  font-size: 1.05rem;
-  line-height: 1.7;
-}
-
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.stat-card {
   padding: 1.25rem;
   border-radius: 1rem;
   background: #ffffff;
   border: 1px solid #e2e8f0;
 }
 
-.stat-card span {
-  display: block;
+.application-company {
+  margin: 0 0 0.35rem;
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.application-card h3 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.application-location {
+  margin: 0.35rem 0 0;
+  color: #64748b;
+}
+
+.application-meta {
+  text-align: right;
   color: #64748b;
   font-size: 0.9rem;
 }
 
-.stat-card strong {
-  display: block;
-  margin-top: 0.5rem;
-  color: #0f172a;
-  font-size: 2rem;
+.application-meta p {
+  margin: 0.35rem 0 0;
 }
 
-@media (max-width: 800px) {
-  .app-header {
+.status-badge {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  background: #dbeafe;
+  color: #1d4ed8;
+  font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .application-card {
     align-items: flex-start;
     flex-direction: column;
   }
 
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 520px) {
-  .stats-grid {
-    grid-template-columns: 1fr;
+  .application-meta {
+    text-align: left;
   }
 }
