@@ -116,6 +116,38 @@
   color: #0f172a;
 }
 
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.filter-button {
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  background: #ffffff;
+  color: #475569;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filter-button:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.filter-button-active {
+  border-color: #2563eb;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.filter-button-active:hover {
+  color: #ffffff;
+}
+
 .applications-list {
   display: grid;
   gap: 1rem;

@@ -1,8 +1,33 @@
+import { useState } from 'react'
 import './App.css'
 import ApplicationCard from './components/ApplicationCard'
-import { sampleApplications } from './data/sampleApplications'
+import {
+  type ApplicationStatus,
+  sampleApplications,
+} from './data/sampleApplications'
+
+const filterOptions: Array<ApplicationStatus | 'All'> = [
+  'All',
+  'Saved',
+  'Applied',
+  'Online Assessment',
+  'Interview',
+  'Offer',
+  'Rejected',
+  'Withdrawn',
+]
 
 function App() {
+  const [selectedStatus, setSelectedStatus] =
+    useState<ApplicationStatus | 'All'>('All')
+
+  const filteredApplications =
+    selectedStatus === 'All'
+      ? sampleApplications
+      : sampleApplications.filter(
+          (application) => application.status === selectedStatus,
+        )
+
   return (
     <div className="app">
       <header className="app-header">
@@ -56,8 +81,24 @@ function App() {
             </div>
           </div>
 
+          <div className="filter-bar" aria-label="Filter applications by status">
+            {filterOptions.map((status) => (
+              <button
+                key={status}
+                className={
+                  selectedStatus === status
+                    ? 'filter-button filter-button-active'
+                    : 'filter-button'
+                }
+                onClick={() => setSelectedStatus(status)}
+              >
+                {status}
+              </button>
+            ))}
+          </div>
+
           <div className="applications-list">
-            {sampleApplications.map((application) => (
+            {filteredApplications.map((application) => (
               <ApplicationCard
                 key={application.id}
                 application={application}
