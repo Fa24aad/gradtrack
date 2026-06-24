@@ -1,7 +1,17 @@
-import type { JobApplication } from '../data/sampleApplications'
+import type { ApplicationStatus, JobApplication } from '../data/sampleApplications'
 
 type ApplicationCardProps = {
   application: JobApplication
+}
+
+const statusClassNames: Record<ApplicationStatus, string> = {
+  Saved: 'status-badge status-saved',
+  Applied: 'status-badge status-applied',
+  'Online Assessment': 'status-badge status-assessment',
+  Interview: 'status-badge status-interview',
+  Offer: 'status-badge status-offer',
+  Rejected: 'status-badge status-rejected',
+  Withdrawn: 'status-badge status-withdrawn',
 }
 
 function ApplicationCard({ application }: ApplicationCardProps) {
@@ -14,7 +24,9 @@ function ApplicationCard({ application }: ApplicationCardProps) {
       </div>
 
       <div className="application-meta">
-        <span className="status-badge">{application.status}</span>
+        <span className={statusClassNames[application.status]}>
+          {application.status}
+        </span>
         <p>Applied: {application.appliedDate}</p>
         <p>Deadline: {application.deadline}</p>
       </div>
