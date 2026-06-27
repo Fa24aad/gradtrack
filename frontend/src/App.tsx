@@ -20,13 +20,19 @@ const filterOptions: Array<ApplicationStatus | 'All'> = [
 function App() {
   const [selectedStatus, setSelectedStatus] =
     useState<ApplicationStatus | 'All'>('All')
+  const [searchTerm, setSearchTerm] = useState('')
 
-  const filteredApplications =
-    selectedStatus === 'All'
-      ? sampleApplications
-      : sampleApplications.filter(
-          (application) => application.status === selectedStatus,
-        )
+  const filteredApplications = sampleApplications.filter((application) => {
+    const matchesStatus =
+      selectedStatus === 'All' || application.status === selectedStatus
+
+    const searchValue = searchTerm.toLowerCase()
+    const matchesSearch =
+      application.company.toLowerCase().includes(searchValue) ||
+      application.role.toLowerCase().includes(searchValue)
+
+    return matchesStatus && matchesSearch
+  })
 
   return (
     <div className="app">
@@ -81,20 +87,37 @@ function App() {
             </div>
           </div>
 
-          <div className="filter-bar" aria-label="Filter applications by status">
-            {filterOptions.map((status) => (
-              <button
-                key={status}
-                className={
-                  selectedStatus === status
-                    ? 'filter-button filter-button-active'
-                    : 'filter-button'
-                }
-                onClick={() => setSelectedStatus(status)}
-              >
-                {status}
-              </button>
-            ))}
+          <div className="tracker-controls">
+            <label className="search-label" htmlFor="application-search">
+              Search applications
+            </label>
+            <input
+              id="application-search"
+              className="search-input"
+              type="search"
+              placeholder="Search by company or role"
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+            />
+
+            <div
+              className="filter-bar"
+              aria-label="Filter applications by status"
+            >
+              {filterOptions.map((status) => (
+                <button
+                  key={status}
+                  className={
+                    selectedStatus === status
+                      ? 'filter-button filter-button-active'
+                      : 'filter-button'
+                  }
+                  onClick={() => setSelectedStatus(status)}
+                >
+                  {status}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="applications-list">
