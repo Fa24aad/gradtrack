@@ -286,3 +286,30 @@
   outline: 3px solid #bfdbfe;
   border-color: #2563eb;
 }
+
+.tracker-controls {
+  margin-bottom: 1rem;
+}
+
+.search-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.search-input {
+  width: 100%;
+  margin-bottom: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.9rem;
+  padding: 0.8rem 1rem;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.search-input:focus {
+  outline: 3px solid #bfdbfe;
+  border-color: #2563eb;
+}
