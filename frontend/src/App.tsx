@@ -22,6 +22,20 @@ function App() {
     useState<ApplicationStatus | 'All'>('All')
   const [searchTerm, setSearchTerm] = useState('')
 
+  const totalApplications = sampleApplications.length
+  const activeApplications = sampleApplications.filter(
+    (application) =>
+      application.status !== 'Rejected' &&
+      application.status !== 'Withdrawn' &&
+      application.status !== 'Offer',
+  ).length
+  const interviewApplications = sampleApplications.filter(
+    (application) => application.status === 'Interview',
+  ).length
+  const offerApplications = sampleApplications.filter(
+    (application) => application.status === 'Offer',
+  ).length
+
   const filteredApplications = sampleApplications.filter((application) => {
     const matchesStatus =
       selectedStatus === 'All' || application.status === selectedStatus
@@ -60,22 +74,22 @@ function App() {
         <section className="stats-grid" aria-label="Application summary">
           <article className="stat-card">
             <span>Total applications</span>
-            <strong>12</strong>
+            <strong>{totalApplications}</strong>
           </article>
 
           <article className="stat-card">
             <span>Active</span>
-            <strong>7</strong>
+            <strong>{activeApplications}</strong>
           </article>
 
           <article className="stat-card">
             <span>Interviews</span>
-            <strong>2</strong>
+            <strong>{interviewApplications}</strong>
           </article>
 
           <article className="stat-card">
             <span>Offers</span>
-            <strong>0</strong>
+            <strong>{offerApplications}</strong>
           </article>
         </section>
 
