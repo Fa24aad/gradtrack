@@ -93,6 +93,57 @@ function App() {
           </article>
         </section>
 
+        <section className="form-card">
+  <div>
+    <p className="eyebrow">Add application</p>
+    <h2>Save a new job application</h2>
+  </div>
+
+  <form className="application-form">
+    <label>
+      Company
+      <input type="text" placeholder="e.g. Sky" />
+    </label>
+
+    <label>
+      Role
+      <input type="text" placeholder="e.g. Graduate Software Engineer" />
+    </label>
+
+    <label>
+      Location
+      <input type="text" placeholder="e.g. London" />
+    </label>
+
+    <label>
+      Status
+      <select defaultValue="Saved">
+        <option>Saved</option>
+        <option>Applied</option>
+        <option>Online Assessment</option>
+        <option>Interview</option>
+        <option>Offer</option>
+        <option>Rejected</option>
+        <option>Withdrawn</option>
+      </select>
+    </label>
+
+    <label>
+      Applied date
+      <input type="date" />
+    </label>
+
+    <label>
+      Deadline
+      <input type="date" />
+    </label>
+
+    <button className="primary-button" type="submit">
+      Save application
+    </button>
+  </form>
+</section>
+
         <section className="applications-section">
           <div className="section-heading">
             <div>
