@@ -3,6 +3,7 @@ import './App.css'
 import ApplicationCard from './components/ApplicationCard'
 import {
   type ApplicationStatus,
+  type JobApplication,
   sampleApplications,
 } from './data/sampleApplications'
 
@@ -17,26 +18,38 @@ const filterOptions: Array<ApplicationStatus | 'All'> = [
   'Withdrawn',
 ]
 
+const initialFormState = {
+  company: '',
+  role: '',
+  location: '',
+  status: 'Saved' as ApplicationStatus,
+  appliedDate: '',
+  deadline: '',
+}
+
 function App() {
+  const [applications, setApplications] =
+    useState<JobApplication[]>(sampleApplications)
   const [selectedStatus, setSelectedStatus] =
     useState<ApplicationStatus | 'All'>('All')
   const [searchTerm, setSearchTerm] = useState('')
+  const [formData, setFormData] = useState(initialFormState)
 
-  const totalApplications = sampleApplications.length
-  const activeApplications = sampleApplications.filter(
+  const totalApplications = applications.length
+  const activeApplications = applications.filter(
     (application) =>
       application.status !== 'Rejected' &&
       application.status !== 'Withdrawn' &&
       application.status !== 'Offer',
   ).length
-  const interviewApplications = sampleApplications.filter(
+  const interviewApplications = applications.filter(
     (application) => application.status === 'Interview',
   ).length
-  const offerApplications = sampleApplications.filter(
+  const offerApplications = applications.filter(
     (application) => application.status === 'Offer',
   ).length
 
-  const filteredApplications = sampleApplications.filter((application) => {
+  const filteredApplications = applications.filter((application) => {
     const matchesStatus =
       selectedStatus === 'All' || application.status === selectedStatus
 
@@ -47,6 +60,37 @@ function App() {
 
     return matchesStatus && matchesSearch
   })
+
+  function handleFormChange(
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) {
+    const { name, value } = event.target
+
+    setFormData((currentFormData) => ({
+      ...currentFormData,
+      [name]: value,
+    }))
+  }
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const newApplication: JobApplication = {
+      id: Date.now(),
+      company: formData.company,
+      role: formData.role,
+      location: formData.location,
+      status: formData.status,
+      appliedDate: formData.appliedDate,
+      deadline: formData.deadline,
+    }
+
+    setApplications((currentApplications) => [
+      newApplication,
+      ...currentApplications,
+    ])
+    setFormData(initialFormState)
+  }
 
   return (
     <div className="app">
@@ -94,55 +138,92 @@ function App() {
         </section>
 
         <section className="form-card">
-  <div>
-    <p className="eyebrow">Add application</p>
-    <h2>Save a new job application</h2>
-  </div>
+          <div>
+            <p className="eyebrow">Add application</p>
+            <h2>Save a new job application</h2>
+          </div>
 
-  <form className="application-form">
-    <label>
-      Company
-      <input type="text" placeholder="e.g. Sky" />
-    </label>
+          <form className="application-form" onSubmit={handleSubmit}>
+            <label>
+              Company
+              <input
+                name="company"
+                type="text"
+                placeholder="e.g. Sky"
+                value={formData.company}
+                onChange={handleFormChange}
+                required
+              />
+            </label>
 
-    <label>
-      Role
-      <input type="text" placeholder="e.g. Graduate Software Engineer" />
-    </label>
+            <label>
+              Role
+              <input
+                name="role"
+                type="text"
+                placeholder="e.g. Graduate Software Engineer"
+                value={formData.role}
+                onChange={handleFormChange}
+                required
+              />
+            </label>
 
-    <label>
-      Location
-      <input type="text" placeholder="e.g. London" />
-    </label>
+            <label>
+              Location
+              <input
+                name="location"
+                type="text"
+                placeholder="e.g. London"
+                value={formData.location}
+                onChange={handleFormChange}
+                required
+              />
+            </label>
 
-    <label>
-      Status
-      <select defaultValue="Saved">
-        <option>Saved</option>
-        <option>Applied</option>
-        <option>Online Assessment</option>
-        <option>Interview</option>
-        <option>Offer</option>
-        <option>Rejected</option>
-        <option>Withdrawn</option>
-      </select>
-    </label>
+            <label>
+              Status
+              <select
+                name="status"
+                value={formData.status}
+                onChange={handleFormChange}
+              >
+                <option>Saved</option>
+                <option>Applied</option>
+                <option>Online Assessment</option>
+                <option>Interview</option>
+                <option>Offer</option>
+                <option>Rejected</option>
+                <option>Withdrawn</option>
+              </select>
+            </label>
 
-    <label>
-      Applied date
-      <input type="date" />
-    </label>
+            <label>
+              Applied date
+              <input
+                name="appliedDate"
+                type="date"
+                value={formData.appliedDate}
+                onChange={handleFormChange}
+                required
+              />
+            </label>
 
-    <label>
-      Deadline
-      <input type="date" />
-    </label>
+            <label>
+              Deadline
+              <input
+                name="deadline"
+                type="date"
+                value={formData.deadline}
+                onChange={handleFormChange}
+                required
+              />
+            </label>
 
-    <button className="primary-button" type="submit">
-      Save application
-    </button>
-  </form>
-</section>
+            <button className="primary-button" type="submit">
+              Save application
+            </button>
+          </form>
+        </section>
 
         <section className="applications-section">
           <div className="section-heading">
