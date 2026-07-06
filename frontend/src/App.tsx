@@ -72,6 +72,14 @@ function App() {
     }))
   }
 
+  function handleDeleteApplication(applicationId: number) {
+    setApplications((currentApplications) =>
+      currentApplications.filter(
+        (application) => application.id !== applicationId,
+      ),
+    )
+  }
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
@@ -268,10 +276,11 @@ function App() {
 
           <div className="applications-list">
             {filteredApplications.map((application) => (
-              <ApplicationCard
-                key={application.id}
-                application={application}
-              />
+            <ApplicationCard
+              key={application.id}
+              application={application}
+              onDelete={handleDeleteApplication}
+            />
             ))}
           </div>
         </section>

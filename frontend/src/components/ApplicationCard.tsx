@@ -2,6 +2,7 @@ import type { ApplicationStatus, JobApplication } from '../data/sampleApplicatio
 
 type ApplicationCardProps = {
   application: JobApplication
+  onDelete: (applicationId: number) => void
 }
 
 const statusClassNames: Record<ApplicationStatus, string> = {
@@ -14,7 +15,7 @@ const statusClassNames: Record<ApplicationStatus, string> = {
   Withdrawn: 'status-badge status-withdrawn',
 }
 
-function ApplicationCard({ application }: ApplicationCardProps) {
+function ApplicationCard({ application, onDelete }: ApplicationCardProps) {
   return (
     <article className="application-card">
       <div>
@@ -29,6 +30,14 @@ function ApplicationCard({ application }: ApplicationCardProps) {
         </span>
         <p>Applied: {application.appliedDate}</p>
         <p>Deadline: {application.deadline}</p>
+
+        <button
+          className="delete-button"
+          type="button"
+          onClick={() => onDelete(application.id)}
+        >
+          Delete
+        </button>
       </div>
     </article>
   )
