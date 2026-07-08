@@ -402,3 +402,48 @@
   color: #64748b;
   line-height: 1.6;
 }
+
+.form-card,
+.applications-section {
+  scroll-margin-top: 2rem;
+}
+
+.form-card {
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+}
+
+.application-form .primary-button {
+  min-height: 48px;
+}
+
+.tracker-controls {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+.search-input {
+  margin-bottom: 1rem;
+}
+
+.applications-list {
+  margin-top: 1rem;
+}
+
+.application-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.application-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+}
+
+@media (max-width: 700px) {
+  .tracker-controls {
+    padding: 0.85rem;
+  }
+}
