@@ -382,3 +382,23 @@
 .delete-button:hover {
   background: #fecaca;
 }
+
+.empty-state {
+  padding: 2rem;
+  border-radius: 1rem;
+  background: #ffffff;
+  border: 1px dashed #cbd5e1;
+  text-align: center;
+}
+
+.empty-state h3 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.empty-state p {
+  max-width: 480px;
+  margin: 0.75rem auto 0;
+  color: #64748b;
+  line-height: 1.6;
+}

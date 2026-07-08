@@ -274,15 +274,25 @@ function App() {
             </div>
           </div>
 
-          <div className="applications-list">
-            {filteredApplications.map((application) => (
-            <ApplicationCard
-              key={application.id}
-              application={application}
-              onDelete={handleDeleteApplication}
-            />
-            ))}
-          </div>
+          {filteredApplications.length > 0 ? (
+            <div className="applications-list">
+              {filteredApplications.map((application) => (
+                <ApplicationCard
+                  key={application.id}
+                  application={application}
+                  onDelete={handleDeleteApplication}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="empty-state">
+              <h3>No applications found</h3>
+              <p>
+                Try changing the selected status filter or searching for a
+                different company or role.
+              </p>
+            </div>
+          )}
         </section>
       </main>
     </div>
