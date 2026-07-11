@@ -15,6 +15,8 @@ export type JobApplication = {
   status: ApplicationStatus
   appliedDate: string
   deadline: string
+  jobLink: string
+  notes: string
 }
 
 export const sampleApplications: JobApplication[] = [
@@ -26,6 +28,8 @@ export const sampleApplications: JobApplication[] = [
     status: 'Applied',
     appliedDate: '2026-06-10',
     deadline: '2026-07-01',
+    jobLink: 'https://example.com/northstar-graduate-software-engineer',
+    notes: 'Application submitted. Waiting for recruiter response.',
   },
   {
     id: 2,
@@ -35,6 +39,8 @@ export const sampleApplications: JobApplication[] = [
     status: 'Interview',
     appliedDate: '2026-06-12',
     deadline: '2026-06-28',
+    jobLink: 'https://example.com/brightpath-junior-frontend-developer',
+    notes: 'Interview scheduled. Review React and TypeScript questions.',
   },
   {
     id: 3,
@@ -44,5 +50,7 @@ export const sampleApplications: JobApplication[] = [
     status: 'Online Assessment',
     appliedDate: '2026-06-14',
     deadline: '2026-07-05',
+    jobLink: 'https://example.com/cloudworks-graduate-backend-developer',
+    notes: 'Online assessment expected. Practise API and SQL questions.',
   },
 ]

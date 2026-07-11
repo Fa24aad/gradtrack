@@ -25,6 +25,8 @@ const initialFormState = {
   status: 'Saved' as ApplicationStatus,
   appliedDate: '',
   deadline: '',
+  jobLink: '',
+  notes: '',
 }
 
 function App() {
@@ -62,7 +64,9 @@ function App() {
   })
 
   function handleFormChange(
-    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
   ) {
     const { name, value } = event.target
 
@@ -91,6 +95,8 @@ function App() {
       status: formData.status,
       appliedDate: formData.appliedDate,
       deadline: formData.deadline,
+      jobLink: formData.jobLink,
+      notes: formData.notes,
     }
 
     setApplications((currentApplications) => [
@@ -224,6 +230,27 @@ function App() {
                 value={formData.deadline}
                 onChange={handleFormChange}
                 required
+              />
+            </label>
+
+            <label>
+              Job link
+              <input
+                name="jobLink"
+                type="url"
+                placeholder="https://example.com/job"
+                value={formData.jobLink}
+                onChange={handleFormChange}
+              />
+            </label>
+
+            <label className="full-width-field">
+              Notes
+              <textarea
+                name="notes"
+                placeholder="Add notes about the application, interview stage or next steps"
+                value={formData.notes}
+                onChange={handleFormChange}
               />
             </label>
 

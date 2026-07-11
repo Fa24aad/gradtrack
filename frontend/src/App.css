@@ -447,3 +447,42 @@
     padding: 0.85rem;
   }
 }
+
+.full-width-field {
+  grid-column: 1 / -1;
+}
+
+.application-form textarea {
+  min-height: 100px;
+  width: 100%;
+  resize: vertical;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.8rem;
+  padding: 0.8rem 1rem;
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.application-form textarea:focus {
+  outline: 3px solid #bfdbfe;
+  border-color: #2563eb;
+}
+
+.application-notes {
+  max-width: 560px;
+  margin: 0.75rem 0 0;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.application-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.application-link:hover {
+  text-decoration: underline;
+}

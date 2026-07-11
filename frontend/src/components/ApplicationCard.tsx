@@ -22,6 +22,21 @@ function ApplicationCard({ application, onDelete }: ApplicationCardProps) {
         <p className="application-company">{application.company}</p>
         <h3>{application.role}</h3>
         <p className="application-location">{application.location}</p>
+
+        {application.notes && (
+          <p className="application-notes">{application.notes}</p>
+        )}
+
+        {application.jobLink && (
+          <a
+            className="application-link"
+            href={application.jobLink}
+            target="_blank"
+            rel="noreferrer"
+          >
+            View job
+          </a>
+        )}
       </div>
 
       <div className="application-meta">
