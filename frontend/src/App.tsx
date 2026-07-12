@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import ApplicationCard from './components/ApplicationCard'
 import {
@@ -29,13 +29,27 @@ const initialFormState = {
   notes: '',
 }
 
+const storageKey = 'gradtrack-applications'
+
 function App() {
-  const [applications, setApplications] =
-    useState<JobApplication[]>(sampleApplications)
+  const [applications, setApplications] = useState<JobApplication[]>(() => {
+    const savedApplications = localStorage.getItem(storageKey)
+
+    if (savedApplications) {
+      return JSON.parse(savedApplications) as JobApplication[]
+    }
+
+    return sampleApplications
+  })
+
   const [selectedStatus, setSelectedStatus] =
     useState<ApplicationStatus | 'All'>('All')
   const [searchTerm, setSearchTerm] = useState('')
   const [formData, setFormData] = useState(initialFormState)
+
+  useEffect(() => {
+    localStorage.setItem(storageKey, JSON.stringify(applications))
+  }, [applications])
 
   const totalApplications = applications.length
   const activeApplications = applications.filter(
