@@ -486,3 +486,13 @@
 .application-link:hover {
   text-decoration: underline;
 }
+
+.form-error {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0.8rem 1rem;
+  border-radius: 0.8rem;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-weight: 700;
+}

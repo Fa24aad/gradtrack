@@ -46,6 +46,7 @@ function App() {
     useState<ApplicationStatus | 'All'>('All')
   const [searchTerm, setSearchTerm] = useState('')
   const [formData, setFormData] = useState(initialFormState)
+  const [formError, setFormError] = useState('')
 
   useEffect(() => {
     localStorage.setItem(storageKey, JSON.stringify(applications))
@@ -88,6 +89,10 @@ function App() {
       ...currentFormData,
       [name]: value,
     }))
+
+    if (formError) {
+      setFormError('')
+    }
   }
 
   function handleDeleteApplication(applicationId: number) {
@@ -101,16 +106,27 @@ function App() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
+    if (
+      !formData.company.trim() ||
+      !formData.role.trim() ||
+      !formData.location.trim() ||
+      !formData.appliedDate ||
+      !formData.deadline
+    ) {
+      setFormError('Please complete all required fields before saving.')
+      return
+    }
+
     const newApplication: JobApplication = {
       id: Date.now(),
-      company: formData.company,
-      role: formData.role,
-      location: formData.location,
+      company: formData.company.trim(),
+      role: formData.role.trim(),
+      location: formData.location.trim(),
       status: formData.status,
       appliedDate: formData.appliedDate,
       deadline: formData.deadline,
-      jobLink: formData.jobLink,
-      notes: formData.notes,
+      jobLink: formData.jobLink.trim(),
+      notes: formData.notes.trim(),
     }
 
     setApplications((currentApplications) => [
@@ -118,6 +134,7 @@ function App() {
       ...currentApplications,
     ])
     setFormData(initialFormState)
+    setFormError('')
   }
 
   return (
@@ -171,7 +188,7 @@ function App() {
             <h2>Save a new job application</h2>
           </div>
 
-          <form className="application-form" onSubmit={handleSubmit}>
+          <form className="application-form" onSubmit={handleSubmit} noValidate>
             <label>
               Company
               <input
@@ -180,7 +197,6 @@ function App() {
                 placeholder="e.g. Sky"
                 value={formData.company}
                 onChange={handleFormChange}
-                required
               />
             </label>
 
@@ -192,7 +208,6 @@ function App() {
                 placeholder="e.g. Graduate Software Engineer"
                 value={formData.role}
                 onChange={handleFormChange}
-                required
               />
             </label>
 
@@ -204,7 +219,6 @@ function App() {
                 placeholder="e.g. London"
                 value={formData.location}
                 onChange={handleFormChange}
-                required
               />
             </label>
 
@@ -232,7 +246,6 @@ function App() {
                 type="date"
                 value={formData.appliedDate}
                 onChange={handleFormChange}
-                required
               />
             </label>
 
@@ -243,7 +256,6 @@ function App() {
                 type="date"
                 value={formData.deadline}
                 onChange={handleFormChange}
-                required
               />
             </label>
 
@@ -267,6 +279,8 @@ function App() {
                 onChange={handleFormChange}
               />
             </label>
+
+            {formError && <p className="form-error">{formError}</p>}
 
             <button className="primary-button" type="submit">
               Save application
