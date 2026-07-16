@@ -6,6 +6,7 @@ import {
   type JobApplication,
   sampleApplications,
 } from './data/sampleApplications'
+import { getApplicationStats } from './utils/applicationStats'
 
 const filterOptions: Array<ApplicationStatus | 'All'> = [
   'All',
@@ -52,19 +53,12 @@ function App() {
     localStorage.setItem(storageKey, JSON.stringify(applications))
   }, [applications])
 
-  const totalApplications = applications.length
-  const activeApplications = applications.filter(
-    (application) =>
-      application.status !== 'Rejected' &&
-      application.status !== 'Withdrawn' &&
-      application.status !== 'Offer',
-  ).length
-  const interviewApplications = applications.filter(
-    (application) => application.status === 'Interview',
-  ).length
-  const offerApplications = applications.filter(
-    (application) => application.status === 'Offer',
-  ).length
+  const {
+    totalApplications,
+    activeApplications,
+    interviewApplications,
+    offerApplications,
+  } = getApplicationStats(applications)
 
   const filteredApplications = applications.filter((application) => {
     const matchesStatus =
