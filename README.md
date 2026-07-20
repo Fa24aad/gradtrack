@@ -1,41 +1,74 @@
-GradTrack
+# GradTrack
 
-GradTrack is a full-stack web application for tracking graduate job applications, interviews, deadlines and application progress.
+GradTrack is a job application tracker built with React and TypeScript to help students and graduates manage their job search in one place.
 
-This project is being built as a graduate software engineering portfolio project. The goal is to demonstrate practical skills in frontend development, backend API design, database modelling, authentication, testing, deployment and documentation.
+## Features
 
-Planned Features
+- Add new job applications
+- Delete applications
+- Search by company or role
+- Filter applications by status
+- Dashboard statistics
+- Save notes for each application
+- Store job links
+- Local storage persistence
+- Form validation
+- Responsive design
 
-* Add and manage graduate job applications
-* Track application status
-* Store company, role, location, salary and job link
-* Add application deadlines and interview dates
-* Add notes for each application
-* Search and filter applications
-* View dashboard statistics
-* Register and log in as a user
-* Store user-specific applications
-* Deploy the frontend and backend online
+## Tech Stack
 
-Tech Stack
+- React
+- TypeScript
+- Vite
+- CSS
 
-Planned stack:
+## Getting Started
 
-* React
-* TypeScript
-* Node.js
-* Express
-* PostgreSQL
-* Prisma
-* Tailwind CSS
-* GitHub Actions
+Clone the repository:
 
-Project Status
+```bash
+git clone <repository-url>
+```
 
-This project is currently in the planning stage.
+Move into the project:
 
-Documentation
+```bash
+cd gradtrack/frontend
+```
 
-* Roadmap
-* Features
-* Technical Decisions
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+## Project Structure
+
+```text
+src/
+├── components/
+├── data/
+├── utils/
+├── App.tsx
+├── App.css
+└── main.tsx
+```
+
+## Future Improvements
+
+- Edit existing applications
+- Backend API
+- Database integration
+- Authentication
+- Cloud deployment
+- Email reminders
+
+## Author
+
+Faizan Ahmed
