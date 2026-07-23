@@ -2,6 +2,27 @@
 
 GradTrack is a job application tracker built with React and TypeScript to help students and graduates manage their job search in one place.
 
+## Project Status
+
+✅ Core features completed
+
+- Application tracking
+- Dashboard statistics
+- Search and filtering
+- Local storage persistence
+- Form validation
+- Job links and notes
+
+🚧 Planned improvements
+
+- Edit existing applications
+- Backend API
+- Authentication
+- Database integration
+- Cloud deployment
+
+_Last updated: July 2026_
+
 ## Features
 
 - Add new job applications
@@ -15,60 +36,12 @@ GradTrack is a job application tracker built with React and TypeScript to help s
 - Form validation
 - Responsive design
 
-## Tech Stack
+## Screenshots
 
-- React
-- TypeScript
-- Vite
-- CSS
+### Dashboard
 
-## Getting Started
+![Dashboard](frontend/src/assets/screenshots/dashboard.png)
 
-Clone the repository:
+### Application Tracker
 
-```bash
-git clone <repository-url>
-```
-
-Move into the project:
-
-```bash
-cd gradtrack/frontend
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Run the development server:
-
-```bash
-npm run dev
-```
-
-## Project Structure
-
-```text
-src/
-├── components/
-├── data/
-├── utils/
-├── App.tsx
-├── App.css
-└── main.tsx
-```
-
-## Future Improvements
-
-- Edit existing applications
-- Backend API
-- Database integration
-- Authentication
-- Cloud deployment
-- Email reminders
-
-## Author
-
-Faizan Ahmed
+![Application Tracker](frontend/src/assets/screenshots/application-tracker.png)
